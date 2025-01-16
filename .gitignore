@@ -3,6 +3,8 @@
 .RData
 .Ruserdata
 *.Rproj
+*.upa
+*.upb
 
 .DS_Store
 /.quarto/
