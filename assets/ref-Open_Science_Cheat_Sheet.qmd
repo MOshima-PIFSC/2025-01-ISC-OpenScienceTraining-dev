@@ -1,0 +1,141 @@
+---
+title: "Open Science Workflow Cheatsheet"
+engine: knitr
+format:
+  html:
+    embed-resources: true
+---
+
+
+## Key terms  
+
+-   **Repository**: A place to store code, files, and each file's revision history.   
+-   **Local Computer**: Your physical computer.     
+-   **Remote**: Computer that is located elsewhere and accessed over a network (e.g. the internet).  
+-   **Render**: Generate documents, presentations and more.
+    Produce HTML, PDF, MS Word, reveal.js, MS Powerpoint, Beamer, websites, blogs, books...  
+
+
+## Git and GitHub  
+
+### Starting a repository  
+```{mermaid}
+flowchart TD
+    A(Do you have a directory already started on your local computer?  ) --Yes--> B(git init)
+    A --No  --> C(git clone repository_url)
+
+
+```
+
+**`git init`**: Initialize a Git repository on a local computer.  
+**`git clone repository_url`**: Copying an entire repository onto a local computer.  
+
+### Making changes to repository  
+
+**`git status`**: Check what files have changed.  
+**`git restore filename`**: Undo changes to a file.  
+
+```{mermaid}
+flowchart LR
+    A(Local computer) --> B(Stage changes: git add)
+    B --> C(Commit changes: git commit -m)
+    C --> D(Push changes to remote repository: git push)
+    D --> E(Remote repository)
+```
+
+```{mermaid}
+flowchart RL 
+    A(Local computer) --> B(Pull changes from remote: git pull)
+    B --> C(Remote repository)
+```
+
+#### From your local computer  
+**`git add`**: Stage changes for a local commit.  
+**`git commit -m "short, descriptive message"`**: Commit changes to be tracked.  
+**`git push`**: Push changes from local computer up to the remote repository.  
+
+#### From remote repository  
+**`git pull`**: Pull changes from the remote repository to your local computer.  
+**`git pull origin main`**: Pull changes from the remote repository **main** branch to the branch you are on.  
+
+### Branches  
+**`git checkout -b branch_name`**: Create a new branch.  
+**`git checkout branch_name`**: Switch to a different branch.  
+**`git switch`**: Switch to a different branch.  
+
+
+## VSCode  
+
+
+
+## renv  
+
+#### Initialize renv for a project  
+
+**`renv::init()`**: Set up a project library for a new or existing project.  
+
+#### Install new packages  
+
+**`renv::install()`**: Install packages from CRAN, GitHub, etc..  
+
+#### Lockfile  
+
+**`renv::snapshot()`**: Update the lockfile with packages being used.   
+**`renv::restore()`**: Reinstall the packages specified in the lockfile.  
+
+## Shiny  
+
+## Quarto  
+
+#### Document format  
+In the header yaml, specify what format(s) you want to create.  
+
+```{.yml}
+---
+title: "Open Science Workflow Cheatsheet"
+format: html
+---
+```
+
+`format` options include:  
+
+*   html  
+*   pdf  
+*   revealjs  
+*   docx  
+*   and more!  
+
+#### Including code  
+Include code blocks in a document  
+
+```{{r}}
+#| echo: true
+
+x <- 2+2
+```
+```{r}
+#| echo: false
+
+x <- 2+2
+```
+Calculated values can be reported in text later: $x =$ `r x`.  
+
+And control the output rendered in the document with execution options.  
+
+| Option    | Effects                                |
+|-----------|----------------------------------------|
+| `echo`    | show/hide code in output               |
+| `eval`    | do/don't run code                      |
+| `include` | include/exclude code or results        |
+| `output`  | include/exclude results                |
+| `warning` | show/hide warnings in output           |
+| `error`   | show/hide error in output and continue with render |
+
+
+#### To render document    
+To render a quarto file to the proper format, in your terminal (not R), run: 
+
+```{.bash}
+quarto render path/to/file/name.qmd
+```
+
