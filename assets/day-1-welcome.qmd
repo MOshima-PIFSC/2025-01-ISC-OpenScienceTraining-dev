@@ -17,7 +17,7 @@ embed-resources: true
 ## {.center}
 ::: {.titlebox style="text-align:center; font-size: 1.25em;"}
 
-[Welcome to ISC BILLWG Open Science Workshop]{.blue-title}
+[Welcome to ISC Open Science Workshop]{.blue-title}
 
 [January 2025]{.blue style="font-size:0.5em;"}
 :::
@@ -32,15 +32,14 @@ embed-resources: true
 ![](static/mo2.jpeg){.absolute top="20%" left="40%" width="25%" style="max-height: unset; max-width: unset; box-shadow: 0 0 2rem 0 rgba(0, 0, 0, .5); border-radius: 5px;"}
 [Meg Oshima]{.absolute bottom="30%" left="43%" style="font-size:0.75em;"}
 
-![](static/ms.png){.absolute top="20%" right="0%" width="25%" style="max-height: unset; max-width: unset; box-shadow: 0 0 2rem 0 rgba(0, 0, 0, .5); border-radius: 5px;"}
-[Michelle Sculley]{.absolute bottom="30%" right="0%" style="font-size:0.75em;"}
-
 
 ## Workshop Materials  
 
-*   All presentations can be found on the [workshop website](https://moshima-pifsc.github.io/ISC_OSworkflow_training/).   
+*   All presentations can be found on the [workshop website](https://moshima-pifsc.github.io/ISC_OSworkflow_training/).  
+    *  https://moshima-pifsc.github.io/2025-01-ISC-OpenScienceTraining
 
-*   Code can be found in the [workshop repository](https://github.com/MOshima-PIFSC/ISC_OSworkflow_training/r-code).   
+*   Code can be found in the [workshop repository](https://github.com/MOshima-PIFSC/ISC_OSworkflow_training/r-code). 
+    *  https://github.com/MOshima-PIFSC/2025-01-ISC-OpenScienceTraining/r-code
 
 :::{.callout-important}
 Make sure you have created a GitHub account before we start. 
@@ -72,7 +71,7 @@ Make sure you have created a GitHub account before we start.
 ::: 
 
 ::: {.fragment .fade-in fragment-index=2}
-*  Codespaces and reproducible environments
+*  Codespaces, VS Code, and reproducible environments
 ::: 
 
 ::: {.fragment .fade-in fragment-index=3}
