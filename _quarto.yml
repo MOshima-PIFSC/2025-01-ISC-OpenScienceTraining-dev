@@ -22,10 +22,14 @@ website:
     contents: 
       - text: "Home"
         file: index.qmd
+      - section: "Day 1"  
+        contents: 
+        - text: "Welcome"
+          file: assets/day-1-welcome.qmd
       - section: "References"  
         contents: 
-        -text: "Cheatsheet"
-         file: assets/ref-Open_Science_Cheat_Sheet.qmd
+        - text: "Cheatsheet"
+          file: assets/ref-Open_Science_Cheat_Sheet.qmd
       - section: "Contact us"
         contents:
         - text: "Nicholas Ducharme-Barth"

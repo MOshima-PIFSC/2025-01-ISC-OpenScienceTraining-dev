@@ -26,11 +26,11 @@ embed-resources: true
 ## Introductions  
 
 
-![](static/nd.jpg){.absolute top="20%" left="0%" width="25%" style="max-height: unset; max-width: unset; box-shadow: 0 0 2rem 0 rgba(0, 0, 0, .5); border-radius: 5px;"}
-[Nicholas <br> Ducharme-Barth]{.absolute bottom="25%" left="0%" style="font-size:0.75em;"}
+![](static/nd.jpg){.absolute top="20%" left="0%" width="35%" style="max-height: unset; max-width: unset; box-shadow: 0 0 2rem 0 rgba(0, 0, 0, .5); border-radius: 5px;"}
+[Nicholas <br> Ducharme-Barth]{.absolute bottom="10%" left="0%" style="font-size:0.75em;"}
 
-![](static/mo2.jpeg){.absolute top="20%" left="40%" width="25%" style="max-height: unset; max-width: unset; box-shadow: 0 0 2rem 0 rgba(0, 0, 0, .5); border-radius: 5px;"}
-[Meg Oshima]{.absolute bottom="30%" left="43%" style="font-size:0.75em;"}
+![](static/mo2.jpeg){.absolute top="20%" right="00%" width="35%" style="max-height: unset; max-width: unset; box-shadow: 0 0 2rem 0 rgba(0, 0, 0, .5); border-radius: 5px;"}
+[Meg Oshima]{.absolute bottom="10%" right="17%" style="font-size:0.75em;"}
 
 
 ## Workshop Materials  
