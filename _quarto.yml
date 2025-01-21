@@ -22,6 +22,10 @@ website:
     contents: 
       - text: "Home"
         file: index.qmd
+      - section: "References"  
+        contents: 
+        -text: "Cheatsheet"
+         file: assets/ref-Open_Science_Cheat_Sheet.qmd
       - section: "Contact us"
         contents:
         - text: "Nicholas Ducharme-Barth"

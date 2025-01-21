@@ -44,9 +44,9 @@ flowchart LR
 ```
 
 ```{mermaid}
-flowchart RL 
-    A(Local computer) --> B(Pull changes from remote: git pull)
-    B --> C(Remote repository)
+flowchart LR 
+    A(Remote repository) --> B(Pull changes from remote: git pull)
+    B --> C(Local computer)
 ```
 
 #### From your local computer  
@@ -66,7 +66,33 @@ flowchart RL
 
 ## VSCode  
 
+An IDE (integrated development environment) that works well with many languages.  
 
+### Side Bar Options  
+
+#### File Explorer  
+To browse the files in a project  
+![](static/VS-code-file-explorer.PNG)  
+
+#### Git GUI (Source Control)  
+To interact with your GitHub repository  
+![](static/VS-code-git.PNG)  
+
+#### Extensions  
+VS Code's version of the app store  
+![](static/VS-code-extensions.PNG)   
+
+#### R  
+Similar to the options available in RStudio for viewing variables in your environment, function documentation, and installing packages.  
+![](static/VS-code-R.PNG)  
+
+### Command Palette  
+Use the shortcut `ctl + shift + P` to access.  
+![](static/VS-code-command-pal.PNG)  
+
+### Terminal  
+Can have multiple terminals of different languages running at a time.  
+![](static/VS-code-terminal.PNG)  
 
 ## renv  
 
@@ -84,6 +110,10 @@ flowchart RL
 **`renv::restore()`**: Reinstall the packages specified in the lockfile.  
 
 ## Shiny  
+
+**`ui.R`**: the interactive user interface code (to show stuff)  
+**`server.R`**: the code for computations and plotting (to do stuff)  
+**`shiny::shinyApp()`**: launches the app
 
 ## Quarto  
 
