@@ -26,6 +26,8 @@ website:
         contents: 
         - text: "Welcome"
           file: assets/day-1-welcome.qmd
+        - text: "Codespaces and VS Code"
+          file: assets/day-1-pres-codespaces.qmd
       - section: "References"  
         contents: 
         - text: "Cheatsheet"
