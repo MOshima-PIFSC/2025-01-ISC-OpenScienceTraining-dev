@@ -1,0 +1,171 @@
+---
+title: "Open Science Workflow Cheatsheet"
+engine: knitr
+format:
+  html:
+    embed-resources: true
+---
+
+
+## Key terms  
+
+-   **Repository**: A place to store code, files, and each file's revision history.   
+-   **Local Computer**: Your physical computer.     
+-   **Remote**: Computer that is located elsewhere and accessed over a network (e.g. the internet).  
+-   **Render**: Generate documents, presentations and more.
+    Produce HTML, PDF, MS Word, reveal.js, MS Powerpoint, Beamer, websites, blogs, books...  
+
+
+## Git and GitHub  
+
+### Starting a repository  
+```{mermaid}
+flowchart TD
+    A(Do you have a directory already started on your local computer?  ) --Yes--> B(git init)
+    A --No  --> C(git clone repository_url)
+
+
+```
+
+**`git init`**: Initialize a Git repository on a local computer.  
+**`git clone repository_url`**: Copying an entire repository onto a local computer.  
+
+### Making changes to repository  
+
+**`git status`**: Check what files have changed.  
+**`git restore filename`**: Undo changes to a file.  
+
+```{mermaid}
+flowchart LR
+    A(Local computer) --> B(Stage changes: git add)
+    B --> C(Commit changes: git commit -m)
+    C --> D(Push changes to remote repository: git push)
+    D --> E(Remote repository)
+```
+
+```{mermaid}
+flowchart LR 
+    A(Remote repository) --> B(Pull changes from remote: git pull)
+    B --> C(Local computer)
+```
+
+#### From your local computer  
+**`git add`**: Stage changes for a local commit.  
+**`git commit -m "short, descriptive message"`**: Commit changes to be tracked.  
+**`git push`**: Push changes from local computer up to the remote repository.  
+
+#### From remote repository  
+**`git pull`**: Pull changes from the remote repository to your local computer.  
+**`git pull origin main`**: Pull changes from the remote repository **main** branch to the branch you are on.  
+
+### Branches  
+**`git checkout -b branch_name`**: Create a new branch.  
+**`git checkout branch_name`**: Switch to a different branch.  
+**`git switch`**: Switch to a different branch.  
+
+
+## VSCode  
+
+An IDE (integrated development environment) that works well with many languages.  
+
+### Side Bar Options  
+
+#### File Explorer  
+To browse the files in a project  
+![](static/VS-code-file-explorer.PNG)  
+
+#### Git GUI (Source Control)  
+To interact with your GitHub repository  
+![](static/VS-code-git.PNG)  
+
+#### Extensions  
+VS Code's version of the app store  
+![](static/VS-code-extensions.PNG)   
+
+#### R  
+Similar to the options available in RStudio for viewing variables in your environment, function documentation, and installing packages.  
+![](static/VS-code-R.PNG)  
+
+### Command Palette  
+Use the shortcut `ctl + shift + P` to access.  
+![](static/VS-code-command-pal.PNG)  
+
+### Terminal  
+Can have multiple terminals of different languages running at a time.  
+![](static/VS-code-terminal.PNG)  
+
+## renv  
+
+#### Initialize renv for a project  
+
+**`renv::init()`**: Set up a project library for a new or existing project.  
+
+#### Install new packages  
+
+**`renv::install()`**: Install packages from CRAN, GitHub, etc..  
+
+#### Lockfile  
+
+**`renv::snapshot()`**: Update the lockfile with packages being used.   
+**`renv::restore()`**: Reinstall the packages specified in the lockfile.  
+
+## Shiny  
+
+**`ui.R`**: the interactive user interface code (to show stuff)  
+**`server.R`**: the code for computations and plotting (to do stuff)  
+**`shiny::shinyApp()`**: launches the app
+
+## Quarto  
+
+#### Document format  
+In the header yaml, specify what format(s) you want to create.  
+
+```{.yml}
+---
+title: "Open Science Workflow Cheatsheet"
+format: html
+---
+```
+
+`format` options include:  
+
+*   html  
+*   pdf  
+*   revealjs  
+*   docx  
+*   and more!  
+
+#### Including code  
+Include code blocks in a document  
+
+```{{r}}
+#| echo: true
+
+x <- 2+2
+```
+```{r}
+#| echo: false
+
+x <- 2+2
+```
+Calculated values can be reported in text later: $x =$ `r x`.  
+
+And control the output rendered in the document with execution options.  
+
+| Option    | Effects                                |
+|-----------|----------------------------------------|
+| `echo`    | show/hide code in output               |
+| `eval`    | do/don't run code                      |
+| `include` | include/exclude code or results        |
+| `output`  | include/exclude results                |
+| `warning` | show/hide warnings in output           |
+| `error`   | show/hide error in output and continue with render |
+
+
+#### To render document    
+To render a quarto file to the proper format, in your terminal (not R), run: 
+
+```{.bash}
+quarto render path/to/file/name.qmd
+```
+
