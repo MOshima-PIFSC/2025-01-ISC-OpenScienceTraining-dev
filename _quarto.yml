@@ -18,17 +18,19 @@ website:
     search: true
     tools:
       - icon: github
-        href: https://github.com/MOshima-PIFSC/ISC_OSworkflow_training
+        href: https://github.com/MOshima-PIFSC/2025-01-ISC-OpenScienceTraining-dev
     contents: 
       - text: "Home"
         file: index.qmd
-      - section: "Day 1"  
-        contents: 
+      - section: "Day 1"
+        href: assets/day-1.html
+        contents:
         - text: "Welcome"
           file: assets/day-1-welcome.qmd
         - text: "Codespaces and VS Code"
           file: assets/day-1-pres-codespaces.qmd
-      - section: "References"  
+      - section: "References" 
+        href: assets/references.html 
         contents: 
         - text: "Cheatsheet"
           file: assets/ref-Open_Science_Cheat_Sheet.qmd
@@ -41,7 +43,7 @@ website:
       - section: "Support"
         contents:
         - text: "Submit an issue"
-          href: https://github.com/MOshima-PIFSC/ISC_OSworkflow_training/issues/new/choose
+          href: https://github.com/MOshima-PIFSC/2025-01-ISC-OpenScienceTraining-dev/issues/new/choose
 
 format: 
   html:

@@ -43,4 +43,3 @@ The schedule for the 3-day workshop is: (note this is flexible and will be updat
 |15:00-15:15|Break| 
 |15:15-15:45|Quarto Website|      
 |15:45-17:00|Group work, wrap up|  
-
