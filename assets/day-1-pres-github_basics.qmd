@@ -124,7 +124,7 @@ flowchart TD
 ```
 :::
 
-## Remote repository on Github
+## Remote repository on Github (リモートリポジトリ)
 
 ::: {.fragment .fade-in fragment-index=1}
 ::: {.fragment .semi-fade-out fragment-index=2}
@@ -150,7 +150,7 @@ flowchart TD
 :::
 :::
 
-## Local repository  
+## Local repository (ローカルリポジトリ) 
 
 ::: {.fragment .fade-in fragment-index=1}
 ::: {.fragment .semi-fade-out fragment-index=2}
@@ -182,7 +182,7 @@ flowchart LR
 ```
 :::
 
-## Commits 
+## Commits (コミット)    
  
 
 ::: {.fragment .fade-in fragment-index=1}
@@ -201,7 +201,7 @@ flowchart LR
 * tell a story of the history of your repository  
 :::
 
-## Commits  
+## Commits (コミット)    
 Make a commit in 2 stages:  
 
 ::: {.fragment .fade-in fragment-index=1}
@@ -243,7 +243,7 @@ git fetch only copies changes into your local git repo. You will later need to m
 the benefit is that you can continue editing files in your local working directory without having to merge your code with updates from the remote. Once you finished editing the files you are working on you can commit your changes and then use git merge to sync everything.  
 :::
 
-## Branches  
+## Branches (ブランチ)   
 ::: {.absolute bottom="5%" top="15%" width="100%" style="max-height: unset; max-width: unset;"}
 
 :::{.fragment .fade-in fragment-index=1}

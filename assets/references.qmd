@@ -1,0 +1,29 @@
+---
+title: "References and Helpful Links"
+format: html
+---
+
+Here we are providing the links the we included in our presentations and some additional ones that may be useful for understanding the topics covered in this training.  
+
+We have also put together this [cheatsheet](_site/assets/ref-Open_Science_Cheat_Sheet.html) with some highlights of code you will use over the course of the training.  
+
+## Git and GitHub  
+
+*   [GitHub Documentation](https://docs.github.com/) - official documentation for everything GitHub related   
+*   [GitHub Skills](https://skills.github.com/) - interactive modules to learn how to use GitHub  
+*   [Official GitHub Training Manual](https://githubtraining.github.io/training-manual/#/) - provides guidance for how to use GitHub for code development (English and Japanese versions available)
+
+## Codespaces  
+
+*   [Codespaces Overview](https://docs.github.com/en/codespaces/overview) - a high-level overview of what codespaces is  
+*   [Quickstart for GitHub Codespaces](https://docs.github.com/en/codespaces/getting-started/quickstart) - how to get started quickly with Codespaces  
+*   [Codespace Templates](https://github.com/codespaces/templates) - pre-made Codespace templates you can use/build off  
+
+## VS Code  
+
+
+## Reproducible Environments  
+
+*  [renv](https://rstudio.github.io/renv/) - website for the R package 
+*  [Introduction to renv](https://rstudio.github.io/renv/articles/renv.html) - introduces the basics of a `renv` workflow   
+*  [Using renv in GitHub Actions](https://rstudio.github.io/renv/articles/ci.html) - how to use renv in automatic workflows like GitHub Actions
