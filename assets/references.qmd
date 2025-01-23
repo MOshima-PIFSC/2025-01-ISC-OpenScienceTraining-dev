@@ -32,4 +32,11 @@ We have also put together this [cheatsheet](_site/assets/ref-Open_Science_Cheat_
 
 *  [renv](https://rstudio.github.io/renv/) - website for the R package 
 *  [Introduction to renv](https://rstudio.github.io/renv/articles/renv.html) - introduces the basics of a `renv` workflow   
-*  [Using renv in GitHub Actions](https://rstudio.github.io/renv/articles/ci.html) - how to use renv in automatic workflows like GitHub Actions
+*  [Using renv in GitHub Actions](https://rstudio.github.io/renv/articles/ci.html) - how to use renv in automatic workflows like GitHub Actions  
+
+## Script-Based Analyses  
+
+
+## Shiny  
+
+## Quarto  
