@@ -21,6 +21,12 @@ We have also put together this [cheatsheet](_site/assets/ref-Open_Science_Cheat_
 
 ## VS Code  
 
+*   [Download VS Code](https://code.visualstudio.com/)  
+*   [Getting Started with VS Code](https://code.visualstudio.com/docs/getstarted/getting-started)  
+*   [Using Git Source Control in VS Code](https://code.visualstudio.com/docs/sourcecontrol/overview)  
+*   [R in VS Code](https://code.visualstudio.com/docs/languages/r)  
+*   [Better Graphics Viewer for R](https://github.com/nx10/httpgd)  
+*   [radian R Console](https://github.com/randy3k/radian)  
 
 ## Reproducible Environments  
 
