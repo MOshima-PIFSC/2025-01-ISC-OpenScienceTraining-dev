@@ -21,7 +21,7 @@ The schedule for the 3-day workshop is: (note this is flexible and will be updat
 |14:15-15:45| GitHub for Collaborative Workflows|  
 |15:45-16:15|Codespaces and VSCode|
 |16:15-16:30|Break|  
-|16:30-16:45|Reproducible Environments|  
+|16:30-16:45|Reproducible R Environments|  
 |16:45-17:00|Wrap up|  
 
 ### Day 2  

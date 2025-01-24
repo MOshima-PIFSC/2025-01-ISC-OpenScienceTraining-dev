@@ -16,7 +16,7 @@ embed-resources: true
 ## {.center}
 ::: {.titlebox style="text-align:center; font-size: 1.25em;"}
 
-[Reproducible Environments]{.blue-title}
+[Reproducible R Environments]{.blue-title}
 
 
 [Megumi Oshima & Nicholas Ducharme-Barth]{.blue style="font-size:0.5em;"}  
@@ -24,21 +24,41 @@ embed-resources: true
 [January 2025]{.blue style="font-size:0.5em;"}
 ::: 
 
-## What is a reproducible environment?  
+## What is an R environment?  
 
 ::: {.incremental}
--  A computing setup where all the necessary components are explicitly defined  
-    -  OS, package versions, software, etc.  
--  Anyone can replicate that exact coding environment and the results will be the same across different machines
-:::  
+* Everything needed to run your code correctly:  
+  * R  
+  * R packages (and their dependencies)  
+  * System dependencies (e.g. external software)  
+:::
 
-## Signs you want to use a reproducible environment  
+## What does it mean to be reproducible?  
+
+::: {.fragment .fade-in fragment-index=1}
+::: {.fragment .semi-fade-out fragment-index=4}
+* The version of R is recorded  
+:::
+:::
+
+::: {.fragment .fade-in fragment-index=2}
+* The versions of every package are recorded  
+:::
+
+::: {.fragment .fade-in fragment-index=3}
+::: {.fragment .semi-fade-out fragment-index=4}
+* The versions of system dependencies are recorded  
+::: 
+:::
+
+## Signs you want to use a reproducible R environment {.smaller}  
 
 ::: {.incremental}
 *   Code that used to run no longer runs even though you haven't changed the code itself  
-*   If you upgrade to a new version of a package or software and things break  
-*   You want to share your code with a colloaborator and ensure they get the same results you get  
-*   You want to run your code in some other environment besides your local computer 
+*   You upgrade to a new version of a package and things break  
+*   You want to easily share your code with a colloaborator    
+*   You want to run your code in somewhere besides your local computer 
+*   You have different projects that use different versions of the same package  
 :::  
 
 ## How can we do this?  
@@ -53,6 +73,20 @@ embed-resources: true
 *   Isloated - each project has it's own library  
 *   Portable - easy to install on different computers (even OS)  
 *   Reproducible - ensures you are using the exact package versions  
+:::
+
+## Project libraries  
+
+::: {.fragment .fade-in fragment-index=1}
+![](static/project_library.png){.absolute left="0%" top="10%" height="65%"}
+:::
+
+::: {.fragment .fade-in fragment-index=2}
+![](static/broken_project_libraries.png){.absolute left="30%" top="10%" height="65%"}
+:::
+
+::: {.fragment .fade-in fragment-index=3}
+![](static/independent_project_libraries.png){.absolute right="0%" top="10%" height="65%"}
 :::
 
 ## renv Workflow  
@@ -70,7 +104,7 @@ flowchart LR
 
 ::: {.fragment .fade-in fragment-index=1}
 ::: {.fragment .semi-fade-out fragment-index=3}
-*  When you first start a project, you will want to initialize an renv project 
+*  When you first start a project, you will want to initialize a renv project 
 ::: 
 
 ::: {.fragment .fade-in fragment-index=2}
