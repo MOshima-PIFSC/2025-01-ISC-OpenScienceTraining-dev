@@ -249,7 +249,7 @@ the benefit is that you can continue editing files in your local working directo
 
 ## Branches  
 ### (ブランチ)     
-::: {.absolute bottom="5%" top="15%" width="100%" style="max-height: unset; max-width: unset;"}
+::: {.absolute bottom="5%" top="20%" width="100%" style="max-height: unset; max-width: unset;"}
 
 :::{.fragment .fade-in fragment-index=1}
 :::{.fragment .fade-out fragment-index=2}
@@ -270,7 +270,7 @@ gitGraph
 :::
 :::
 
-::: {.absolute bottom="5%" top="15%" width="100%" style="max-height: unset; max-width: unset;"}
+::: {.absolute bottom="5%" top="20%" width="100%" style="max-height: unset; max-width: unset;"}
 
 :::{.fragment .fade-in fragment-index=2}
 ```{mermaid}
@@ -333,10 +333,15 @@ Let's make our first commit!
 3. Commit your file, and push to the repository. 
 
 ## Activity 2: Branches  
-1. Create a new branch from the main branch 
+1. Create a new branch from the main branch  
 
-2. Add your name to the list of participants. 
+    `git checkout -b new-branch-name`  
+
+2. Add your name to the list of participants in the `README.md` file. 
 
 3. Save your change, commit, and push to your branch.   
-
-4. Submit a Pull Request to merge your changes into `main` branch. 
+    ```
+    git add README.md  
+    git commit -m "add descriptive message here"  
+    git push origin new-branch-name  
+    ```
