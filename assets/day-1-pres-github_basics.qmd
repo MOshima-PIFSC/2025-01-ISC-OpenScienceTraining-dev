@@ -124,7 +124,8 @@ flowchart TD
 ```
 :::
 
-## Remote repository on Github (リモートリポジトリ)
+## Remote repository on Github 
+### (リモートリポジトリ)  
 
 ::: {.fragment .fade-in fragment-index=1}
 ::: {.fragment .semi-fade-out fragment-index=2}
@@ -150,7 +151,8 @@ flowchart TD
 :::
 :::
 
-## Local repository (ローカルリポジトリ) 
+## Local repository  
+### (ローカルリポジトリ)    
 
 ::: {.fragment .fade-in fragment-index=1}
 ::: {.fragment .semi-fade-out fragment-index=2}
@@ -182,7 +184,8 @@ flowchart LR
 ```
 :::
 
-## Commits (コミット)    
+## Commits  
+### (コミット)      
  
 
 ::: {.fragment .fade-in fragment-index=1}
@@ -201,7 +204,8 @@ flowchart LR
 * tell a story of the history of your repository  
 :::
 
-## Commits (コミット)    
+## Commits  
+### (コミット)      
 Make a commit in 2 stages:  
 
 ::: {.fragment .fade-in fragment-index=1}
@@ -243,7 +247,8 @@ git fetch only copies changes into your local git repo. You will later need to m
 the benefit is that you can continue editing files in your local working directory without having to merge your code with updates from the remote. Once you finished editing the files you are working on you can commit your changes and then use git merge to sync everything.  
 :::
 
-## Branches (ブランチ)   
+## Branches  
+### (ブランチ)     
 ::: {.absolute bottom="5%" top="15%" width="100%" style="max-height: unset; max-width: unset;"}
 
 :::{.fragment .fade-in fragment-index=1}
@@ -307,14 +312,9 @@ Once you have finished development on your branch and want to add your changes t
 
 Let's make our first commit!
 
-::: {.notes}
-Meg walks through making a change to the README.md file first. 
-Then let them do the activity in a group. 
-:::
-
 
 ## Activity 1  {.scrollable .smaller}
-1. Following the template provided [here]("https://github.com/MOshima-PIFSC/ISC_OSworkflow_training_dev/r-code/Group_info_template.qmd"), create a new Markdown document with: 
+1. Following the template provided [here]("https://github.com/MOshima-PIFSC/2025-01-ISC-OpenScienceTraining-dev/r-code/activity_1_template.md"), create a new Markdown document (`.md`) with: 
 
   * A list of everyone in your group, including:   
 
