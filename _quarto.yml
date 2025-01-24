@@ -31,8 +31,8 @@ website:
           file: assets/day-1-pres-codespaces.qmd
         - text: "Reproducible R Environments"
           file: assets/day-1-pres-reproducible_environments.qmd
-      - section: "References" 
-        href: assets/references.html 
+      - section: "Resources" 
+        href: assets/resources.html 
         contents: 
         - text: "Cheatsheet"
           file: assets/ref-Open_Science_Cheat_Sheet.qmd
