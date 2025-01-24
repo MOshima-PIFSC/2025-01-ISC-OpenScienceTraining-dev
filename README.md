@@ -1,6 +1,10 @@
 # ISC Open Science Workflow Training
 This repository holds code and presentations for the 2025 ISC Billfish Working Group Meeting. 
 
+Participant list: 
+
+*   Meg Oshima  
+
 ## Rendering and publishing
 
 Rendering and publishing of the repo [webpage](https://moshima-pifsc.github.io/ISC_OSworkflow_training/) is done automatically via GitHub Actions. In order to render a local version of the webpage, clone the repo to your local machine, ensure [Quarto](https://quarto.org/docs/get-started/) is installed and run
