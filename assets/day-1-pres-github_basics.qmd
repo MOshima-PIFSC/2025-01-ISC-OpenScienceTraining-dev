@@ -139,17 +139,10 @@ flowchart TD
 :::
 :::
 
-::: {.fragment .fade-in fragment-index=3}
-* Connect the remote repository to the files on your local computer
-
-::: {.fragment .fade-in fragment-index=4}
-  * `git clone`
+::: {.fragment .fade-in fragment-index=3}  
+* Many ways to work with GitHub   
 :::
 
-::: {.fragment .fade-in fragment-index=5}
-  * `git init`
-:::
-:::
 
 ## Local repository  
 ### (ローカルリポジトリ)    
@@ -169,6 +162,22 @@ flowchart TD
 
 ::: {.fragment .fade-in fragment-index=3}
 * Different from local working directory 
+:::
+
+## Connecting remote and local repositories  
+
+![](https://githubtraining.github.io/training-manual/img/push-pull.png){.absolute top="10%" right="0%" left="40%" width="80%"}
+
+::: {.fragment .fade-in fragment-index=1}
+::: {.absolute top="25%" left="0%" right="50%"}
+  * `git clone` - if you started the repository on GitHub  
+:::
+:::
+
+::: {.fragment .fade-in fragment-index=2}
+::: {.absolute bottom="20%" left="0%" right="50%"}
+  * `git init` - if you started the repository on your computer
+:::
 :::
 
 ## Making changes locally  
@@ -220,16 +229,29 @@ Make a commit in 2 stages:
     `git commit -m "descriptive commit message"`  
 :::
 
-## Push 
+## Push  
+### (プッシュ)　　
 
+![](https://githubtraining.github.io/training-manual/img/push-pull.png){.absolute top="10%" right="0%" left="40%" width="80%"}
+
+::: {.absolute top="25%" left="0%" right="50%"}
 To sync the changes you've made locally with the remote repository, you need to **"PUSH"** your commits 
+:::
 
+::: {.absolute bottom="20%" left="0%" right="50%"}
 `git push`
+:::
 
-## Pull
+## Pull　　
+### (プル)　
 
-To sync any changes that were made to the remote repository onto your local computer you need to **"PULL"** commits
+![](https://githubtraining.github.io/training-manual/img/push-pull.png){.absolute top="10%" right="0%" left="40%" width="80%"}
 
+::: {.absolute top="25%" left="0%" right="50%"}
+To sync changes _from_ the remote repository _to_ your local computer you need to **"PULL"** commits
+:::
+
+::: {.absolute bottom="0%" left="0%" right="50%"}
 :::{.fragment .fade-in fragment-index=1}
 2 ways:  
 1. `git pull` 
@@ -237,6 +259,7 @@ To sync any changes that were made to the remote repository onto your local comp
 
 :::{.fragment .fade-in fragment-index=2}
 2. `git fetch`, then eventually `git merge` 
+:::
 :::
 
 :::{.notes}
@@ -303,17 +326,12 @@ If you are working on a project by yourself, your commit history might look some
 
 :::
 
-## Pull Requests  
-Once you have finished development on your branch and want to add your changes to the main branch, you can submit a **pull request**  
-
-![](static/gh_pr.PNG){style="box-shadow: 0 0 2rem 0 rgba(0, 0, 0, .5); border-radius: 5px;"}
-
 # Live Demo 
 
 Let's make our first commit!
 
 
-## Activity 1  {.scrollable .smaller}
+## Activity  {.scrollable .smaller}
 1. Following the template provided [here]("https://github.com/MOshima-PIFSC/2025-01-ISC-OpenScienceTraining-dev/r-code/activity_1_template.md"), create a new Markdown document (`.md`) with: 
 
   * A list of everyone in your group, including:   
@@ -332,16 +350,3 @@ Let's make our first commit!
 
 3. Commit your file, and push to the repository. 
 
-## Activity 2: Branches  
-1. Create a new branch from the main branch  
-
-    `git checkout -b new-branch-name`  
-
-2. Add your name to the list of participants in the `README.md` file. 
-
-3. Save your change, commit, and push to your branch.   
-    ```
-    git add README.md  
-    git commit -m "add descriptive message here"  
-    git push origin new-branch-name  
-    ```
