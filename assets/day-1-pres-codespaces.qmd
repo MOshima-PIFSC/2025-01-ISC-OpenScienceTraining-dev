@@ -55,6 +55,15 @@ embed-resources: true
 :::
 :::
 
+##  When should I use codespaces? 
+::: {.incremental}
+* Workshops/Trainings  
+* Reviews  
+* Developing packages or software  
+* Traveling  
+* Can't install certain software onto your computer  
+:::   
+
 ## Set Up  
 
 To set up a Codespace,   
@@ -174,3 +183,16 @@ On the main page of the repository, "Code" -> "Create codespace on main"
 ![](static/VS-code-terminal.PNG){.absolute top="35%" left="10%" width="75%" style="max-height: unset; max-width: unset; box-shadow: 0 0 2rem 0 rgba(0, 0, 0, .5); border-radius: 5px;"}
 :::
 
+## Activity   
+1. Create a new branch from the main branch  
+
+    `git checkout -b new-branch-name`  
+
+2. Add your name to the list of participants in the `README.md` file. 
+
+3. Save your change, commit, and push to your branch.   
+```{.bash}
+    git add README.md  
+    git commit -m "add descriptive message here"  
+    git push origin new-branch-name  
+```
