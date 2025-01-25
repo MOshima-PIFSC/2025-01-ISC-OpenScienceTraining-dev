@@ -1,0 +1,17 @@
+---
+title: "Codespaces and VS Code"
+author: "Megumi Oshima and Nicholas Ducharme-Barth"
+format: 
+ html:
+  mermaid-format: svg
+embed-resources: true
+---
+
+## What is Codespaces?  
+
+*  Development environment that is hosted in the cloud on GitHub.com  
+
+*  You control the specs of the machine!  
+
+*  Connected to your repository  
+
