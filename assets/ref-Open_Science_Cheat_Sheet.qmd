@@ -4,6 +4,7 @@ engine: knitr
 format:
   html:
     embed-resources: true
+    toc-expand: true
 ---
 
 
@@ -62,6 +63,26 @@ flowchart LR
 **`git checkout -b branch_name`**: Create a new branch.  
 **`git checkout branch_name`**: Switch to a different branch.  
 **`git switch`**: Switch to a different branch.  
+
+### Sample workflow
+
+When working within a `git` enabled project it is generally good practice to not work directly on the `main` branch but to work in an alternative branch that can be pulled into the `main` branch.
+
+1. If needed clone the repository to your local machine using `git clone <url-to-repo.git>` where `<url-to-repo.git>` can be found on the repository website under the *green* code tab.
+
+2. Create a new branch using `git checkout -b <branch_name>` where `<branch_name>` is the branch you would like to work in.
+
+3. Set the upstream location so `git` knows where to push changes to using `git push --set-upstream origin <branch_name>`.
+
+4. Add/modify content within the repository and stage it for a commit using `git add`. You can stage all files at once using `git add .` or stage individual files using `git add <filename>`.
+
+5. Make the commit using `git commit` and add a label for the commit using the `-m` flag, `git commit -m 'Sample commit'`. Steps 4 & 5 can be combined to commit all new files using the `-am` flag, `git commit -am 'Sample commit'`.
+
+6. You can push the commit to the remote repository using `git push`.
+
+7. If you are getting ready to merge your changes into a different branch, it is useful to pull that branch into the branch you are working in using `git pull origin <other_branch>`. Now you can push your updated `branch_name` branch using `git pull`.
+
+8. You can now initiate a pull request from the Github reposository website to bring in the changes from `branch_name` into `other_branch`. This is also possible from the command line by switching to the `other_branch` using `git checkout other_branch` and then pulling in `branch_name` using `git pull origin branch_name`.
 
 
 ## VSCode  
