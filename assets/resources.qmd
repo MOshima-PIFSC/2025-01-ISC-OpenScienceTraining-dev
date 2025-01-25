@@ -11,7 +11,8 @@ We have also put together this [cheatsheet](_site/assets/ref-Open_Science_Cheat_
 
 *   [GitHub Documentation](https://docs.github.com/) - official documentation for everything GitHub related   
 *   [GitHub Skills](https://skills.github.com/) - interactive modules to learn how to use GitHub  
-*   [Official GitHub Training Manual](https://githubtraining.github.io/training-manual/#/) - provides guidance for how to use GitHub for code development (English and Japanese versions available)
+*   [Official GitHub Training Manual](https://githubtraining.github.io/training-manual/#/) - provides guidance for how to use GitHub for code development (English and Japanese versions available)  
+*   [Connecting to GitHub](https://docs.github.com/en/get-started/using-github/connecting-to-github) - how to connect GitHub with your local computer
 
 ## Codespaces  
 
@@ -21,9 +22,21 @@ We have also put together this [cheatsheet](_site/assets/ref-Open_Science_Cheat_
 
 ## VS Code  
 
+*   [Download VS Code](https://code.visualstudio.com/)  
+*   [Getting Started with VS Code](https://code.visualstudio.com/docs/getstarted/getting-started)  
+*   [Using Git Source Control in VS Code](https://code.visualstudio.com/docs/sourcecontrol/overview)  
+*   [R in VS Code](https://code.visualstudio.com/docs/languages/r)  
+*   [Better Graphics Viewer for R](https://github.com/nx10/httpgd)  
+*   [radian R Console](https://github.com/randy3k/radian)  
 
 ## Reproducible Environments  
 
 *  [renv](https://rstudio.github.io/renv/) - website for the R package 
 *  [Introduction to renv](https://rstudio.github.io/renv/articles/renv.html) - introduces the basics of a `renv` workflow   
-*  [Using renv in GitHub Actions](https://rstudio.github.io/renv/articles/ci.html) - how to use renv in automatic workflows like GitHub Actions
+*  [Using renv in GitHub Actions](https://rstudio.github.io/renv/articles/ci.html) - how to use renv in automatic workflows like GitHub Actions  
+
+## Script-Based Analyses  
+
+## Shiny  
+
+## Quarto  

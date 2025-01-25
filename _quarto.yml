@@ -27,10 +27,14 @@ website:
         contents:
         - text: "Welcome"
           file: assets/day-1-welcome.qmd
+        - text: "GitHub for Collaborative Workflows"
+          file: assets/day-1-pres-github_basics.qmd
         - text: "Codespaces and VS Code"
           file: assets/day-1-pres-codespaces.qmd
-      - section: "References" 
-        href: assets/references.html 
+        - text: "Reproducible R Environments"
+          file: assets/day-1-pres-reproducible_environments.qmd
+      - section: "Resources" 
+        href: assets/resources.html 
         contents: 
         - text: "Cheatsheet"
           file: assets/ref-Open_Science_Cheat_Sheet.qmd

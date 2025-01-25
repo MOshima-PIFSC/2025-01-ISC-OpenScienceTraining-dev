@@ -12,7 +12,7 @@ Presentation slides for the Codespaces presentation.
 
 {{< revealjs file="day-1-pres-codespaces.html" height="500px" class="ratio ratio-16x9" >}}  
 
-Presentation slides for the Reproducible Environments presentation.
+Presentation slides for the Reproducible R Environments presentation.
 
 {{< revealjs file="day-1-pres-reproducible_environments.html" height="500px" class="ratio ratio-16x9" >}}  
 
@@ -20,9 +20,6 @@ Presentation slides for the presentation on modifying and running stock synthesi
 
 {{< revealjs file="day-1-pres-modify-stock-synthesis.html" height="500px" class="ratio ratio-16x9" >}}
 
-Presentation slides for the Part 2 presentation on modifying and running stock synthesis models.
-
-{{< revealjs file="day-1-pres-modify-stock-synthesis_BILLWG.html" height="500px" class="ratio ratio-16x9" >}}
 
 ## Resources
 

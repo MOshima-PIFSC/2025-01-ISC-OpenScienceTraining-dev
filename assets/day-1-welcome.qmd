@@ -71,7 +71,7 @@ Make sure you have created a GitHub account before we start.
 ::: 
 
 ::: {.fragment .fade-in fragment-index=2}
-*  Codespaces, VS Code, and reproducible environments
+*  Codespaces, VS Code, and reproducible R environments
 ::: 
 
 ::: {.fragment .fade-in fragment-index=3}
