@@ -2,6 +2,7 @@
 # with the following prompt:
 # "Create an app that generates data from a von Bertalanffy growth curve with Lognormal error and plots it"
 
+library(shiny)
 library(bslib)
 library(ggplot2)
 
