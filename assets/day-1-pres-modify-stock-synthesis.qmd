@@ -16,7 +16,7 @@ embed-resources: true
 ## {.center}
 ::: {.titlebox style="text-align:center; font-size: 1.25em;"}
 
-[Modifying and running stock synthesis models]{.blue-title}
+[Script based workflows]{.blue-title}
 
 
 [Megumi Oshima & Nicholas Ducharme-Barth]{.blue style="font-size:0.5em;"}  
@@ -28,7 +28,7 @@ embed-resources: true
 
 </br>
 
-In this module we will cover editing and running stock assessments using a script based workflow.
+In this module we will cover editing and running models using script based workflows using a growth analysis and stock assessment model as examples.
 
 ## Why?
 
@@ -45,7 +45,201 @@ Containing all steps of an analysis within a script is a key component of an Ope
 - Facilitates documentation
 :::
 
-## Application {.smaller}
+## Application: growth analysis {.smaller}
+
+</br>
+
+Using a simulated age-and-growth dataset, walk through a simple script based workflow for estimating a [von Bertalanffy growth curve](https://derekogle.com/NCNRS349/modules/PREP/NOTES/Growth){preview-link="true"} in [R](https://www.r-project.org/) using a Lognormal likelihood function.
+
+</br>
+
+::: {.fragment .fade-in}
+$$ 
+\hat{L} = L_{\infty} (1 - \mathrm{exp}(-K (a - t_0)))
+$$
+$$
+\sigma = \sqrt(\mathrm{log}(1 + CV^2))
+$$
+$$
+\mu = \mathrm{log}(\hat{L}) - \frac{\sigma^2}{2}
+$$
+$$ 
+L_{obs} \sim \mathrm{Lognormal}(\mu,\sigma)
+$$
+:::
+
+## Fitting the growth model {.smaller}
+
+::: {.codewindow .r .absolute top="15%" left="0%" right="50%" style="font-size: 0.5em;"}
+01-00-fit-vb-growth-curve.r
+```{.r}
+# load packages
+    library(data.table)
+    library(ggplot2)
+    library(magrittr)
+
+# define paths
+	proj_dir = this.path::this.proj()
+    from_dir = file.path(proj_dir,"data")
+
+# read in data
+    age_dt = fread(file=file.path(from_dir,"age-and-growth.csv"))
+
+# define likelihood function
+    nll_function = function(par,data){
+        # estimate on log-scale to restrict to positive values
+        Linf = exp(par[1])
+        K = exp(par[2])
+        t0 = par[3]
+        cv = exp(par[4])
+
+        # define expectation
+        mu = Linf * (1 - exp(-K * (data$age - t0)))
+        sigma = sqrt(log(1 + cv^2))
+        mu_log = log(mu) - (sigma^2)/2
+
+        # calculate the negative log-likelihood
+        nll = -sum(dlnorm(data$length, meanlog = mu_log, sdlog = sigma, log = TRUE))
+        return(nll)
+    }
+
+# fit the model
+    init_par = c(Linf=log(110),
+                K=log(0.15),
+                t0=0,
+                cv=log(0.3))
+    model_data = age_dt
+    fit = optim(par=init_par, fn = nll_function, data = model_data, method="BFGS")
+
+# extract estimated parameters
+    est_par = as.list(c(exp(fit$par[1]),exp(fit$par[2]),fit$par[3],exp(fit$par[4])))
+
+# plot expected vs. predicted
+    model_data$predicted = est_par$Linf * (1 - exp(-est_par$K * (model_data$age - est_par$t0)))
+
+    p = model_data %>%
+        .[order(age)] %>%
+        ggplot() +
+        ylim(0,NA) +
+		xlab("Age") +
+        ylab("Length") +
+        geom_point(aes(x=age,y=length),color="black",fill="blue",shape=21,cex=3,alpha=0.3) +
+        geom_path(aes(x=age,y=predicted),linewidth=1.5) +
+		theme(panel.background = element_rect(fill = "white", color = "black", linetype = "solid"),
+							panel.grid.major = element_line(color = 'gray70',linetype = "dotted"), 
+							panel.grid.minor = element_line(color = 'gray70',linetype = "dotted"),
+							strip.background =element_rect(fill="white"),
+							legend.key = element_rect(fill = "white"))    
+```
+:::
+
+```{r}
+#| eval: true
+#| include: false
+# load packages
+    library(data.table)
+    library(ggplot2)
+    library(magrittr)
+
+# define paths
+	proj_dir = this.path::this.proj()
+    from_dir = file.path(proj_dir,"data")
+
+# read in data
+    age_dt = fread(file=file.path(from_dir,"age-and-growth.csv"))
+
+# define likelihood function
+    nll_function = function(par,data){
+        # estimate on log-scale to restrict to positive values
+        Linf = exp(par[1])
+        K = exp(par[2])
+        t0 = par[3]
+        cv = exp(par[4])
+
+        # define expectation
+        mu = Linf * (1 - exp(-K * (data$age - t0)))
+        sigma = sqrt(log(1 + cv^2))
+        mu_log = log(mu) - (sigma^2)/2
+
+        # calculate the negative log-likelihood
+        nll = -sum(dlnorm(data$length, meanlog = mu_log, sdlog = sigma, log = TRUE))
+        return(nll)
+    }
+
+# fit the model
+    init_par = c(Linf=log(110),
+                K=log(0.15),
+                t0=0,
+                cv=log(0.3))
+    model_data = age_dt
+    fit = optim(par=init_par, fn = nll_function, data = model_data, method="BFGS")
+
+# extract estimated parameters
+    est_par = as.list(c(exp(fit$par[1]),exp(fit$par[2]),fit$par[3],exp(fit$par[4])))
+
+# plot expected vs. predicted
+    model_data$predicted = est_par$Linf * (1 - exp(-est_par$K * (model_data$age - est_par$t0)))
+
+    p1 = model_data %>%
+        .[order(age)] %>%
+        ggplot() +
+        ylim(0,NA) +
+		xlab("Age") +
+        ylab("Length") +
+        geom_point(aes(x=age,y=length),color="black",fill="blue",shape=21,cex=3,alpha=0.3) +
+		theme(panel.background = element_rect(fill = "white", color = "black", linetype = "solid"),
+							panel.grid.major = element_line(color = 'gray70',linetype = "dotted"), 
+							panel.grid.minor = element_line(color = 'gray70',linetype = "dotted"),
+							strip.background =element_rect(fill="white"),
+							legend.key = element_rect(fill = "white")) 
+    p2 = model_data %>%
+        .[order(age)] %>%
+        ggplot() +
+        ylim(0,NA) +
+		xlab("Age") +
+        ylab("Length") +
+        geom_point(aes(x=age,y=length),color="black",fill="blue",shape=21,cex=3,alpha=0.3) +
+        geom_path(aes(x=age,y=predicted),linewidth=1.5) +
+		theme(panel.background = element_rect(fill = "white", color = "black", linetype = "solid"),
+							panel.grid.major = element_line(color = 'gray70',linetype = "dotted"), 
+							panel.grid.minor = element_line(color = 'gray70',linetype = "dotted"),
+							strip.background =element_rect(fill="white"),
+							legend.key = element_rect(fill = "white"))      
+```
+
+::: {.fragment .fade-out fragment-index=2}
+::: {.fragment .fade-in fragment-index=1}
+::: {.absolute top="25%" left="55%" right="0%"}
+```{r}
+#| eval: true
+#| echo: false
+#| output: true
+#| fig-height: 5
+#| fig-width: 5
+p1
+```
+
+:::
+:::
+:::
+
+::: {.fragment .fade-in fragment-index=2}
+::: {.absolute top="25%" left="55%" right="0%"}
+```{r}
+#| eval: true
+#| echo: false
+#| output: true
+#| fig-height: 5
+#| fig-width: 5
+p2
+```
+
+:::
+:::
+
+
+
+## Application: stock assessment {.smaller}
 
 </br>
 
@@ -244,7 +438,7 @@ Check out the [manual](https://nmfs-ost.github.io/ss3-doc/SS330_User_Manual_rele
 0  #  future feature:  0/1 to make realized sigmaR a function of SR curvature
 #_          LO            HI          INIT         PRIOR         PR_SD       PR_type      PHASE    env-var    use_dev   dev_mnyr   dev_mxyr     dev_PH      Block    Blk_Fxn #  parm_name
              3            31            10          10.3            10             0          1          0          0          0          0          0          0          0 # SR_LN(R0)
-           0.2             1      0.573835           0.7          0.05             1         -4          0          0          0          0          0          0          0 # SR_BH_steep
+           0.2             1      0.573835           0.573835          0.05             1         -4          0          0          0          0          0          0          0 # SR_BH_steep
              0             2           0.6           0.8           0.8             0         -4          0          0          0          0          0          0          0 # SR_sigmaR
             -5             5             0             0             1             0         -4          0          0          0          0          0          0          0 # SR_regime
              0             0             0             0             0             0        -99          0          0          0          0          0          0          0 # SR_autocorr
@@ -451,20 +645,21 @@ Use [`SS_readctl()`](https://r4ss.github.io/r4ss/reference/SS_readctl.html){prev
 
 ::: {.fragment .fade-out fragment-index=2}
 ::: {.fragment .fade-in fragment-index=1}
-::: {.codewindow .r .absolute top="15%" left="30%" right="0%" bottom="30%" style="font-size: 0.6em;"}
-ss3-example-calcs.r
+::: {.codewindow .r .absolute top="15%" left="30%" right="0%" style="font-size: 0.6em;"}
+01-01-modify-stock-synthesis.r
 ```{.r}
 # load packages
     library(r4ss)
 
 # define paths
 	proj_dir = this.path::this.proj()
-	dir_model = paste0(proj_dir,"/stock-synthesis-models/")
-    dir_base_stock_synthesis = paste0(dir_model,"base-model/")
+    from_dir = file.path(proj_dir,"stock-synthesis-models","base-model")
+    to_dir = file.path(proj_dir,"stock-synthesis-models","steepness-0.7")
+    dir.create(to_dir,recursive=TRUE)
 
 # read control file
-    tmp_ctl = SS_readctl(file=paste0(dir_base_stock_synthesis,"control.ss"),
-                         datlist = paste0(dir_base_stock_synthesis,"data.ss"))
+    tmp_ctl = SS_readctl(file=file.path(from_dir,"control.ss"),
+                         datlist = file.path(from_dir,"data.ss"))
 ```
 :::
 :::
@@ -479,12 +674,13 @@ ss3-example-calcs.r
 
 # define paths
 	proj_dir = this.path::this.proj()
-	dir_model = paste0(proj_dir,"/stock-synthesis-models/")
-    dir_base_stock_synthesis = paste0(dir_model,"base-model/")
+    from_dir = file.path(proj_dir,"stock-synthesis-models","base-model")
+    to_dir = file.path(proj_dir,"stock-synthesis-models","steepness-0.7")
+    dir.create(to_dir,recursive=TRUE)
 
 # read control file
-    tmp_ctl = SS_readctl(file=paste0(dir_base_stock_synthesis,"control.ss"),
-                         datlist = paste0(dir_base_stock_synthesis,"data.ss"))
+    tmp_ctl = SS_readctl(file=file.path(from_dir,"control.ss"),
+                         datlist = file.path(from_dir,"data.ss"))
 ```
 
 ::: {.fragment .fade-out fragment-index=5}
@@ -497,7 +693,7 @@ Let's look more closely at `tmp_ctl`.
 
 ::: {.fragment .fade-out fragment-index=3}
 ::: {.fragment .fade-in fragment-index=2}
-::: {.absolute top="15%" left="30%" right="0%" bottom="0%"}
+::: {.absolute top="15%" left="30%" right="0%"}
 ```{r}
 #| echo: true
 class(tmp_ctl)
@@ -509,7 +705,7 @@ names(tmp_ctl)
 
 ::: {.fragment .fade-out fragment-index=4}
 ::: {.fragment .fade-in fragment-index=3}
-::: {.absolute top="15%" left="30%" right="0%" bottom="0%"}
+::: {.absolute top="15%" left="30%" right="0%"}
 ```{r}
 #| echo: true
 class(tmp_ctl$SR_parms)
@@ -522,7 +718,7 @@ dimnames(tmp_ctl$SR_parms)
 
 ::: {.fragment .fade-out fragment-index=5}
 ::: {.fragment .fade-in fragment-index=4}
-::: {.absolute top="15%" left="30%" right="0%" bottom="0%"}
+::: {.absolute top="15%" left="30%" right="0%"}
 ```{r}
 #| echo: true
 tmp_ctl$SR_parms["SR_BH_steep",c("LO","HI","INIT","PHASE")]
@@ -542,25 +738,27 @@ Let's set $h = 0.7$.
 :::
 
 ::: {.fragment .fade-in fragment-index=5}
-::: {.codewindow .r .absolute top="15%" left="30%" right="0%" bottom="15%" style="font-size: 0.6em;"}
-ss3-example-calcs.r
+::: {.codewindow .r .absolute top="15%" left="30%" right="0%" style="font-size: 0.6em;"}
+01-01-modify-stock-synthesis.r
 ```{.r}
 # load packages
     library(r4ss)
 
 # define paths
 	proj_dir = this.path::this.proj()
-	dir_model = paste0(proj_dir,"/stock-synthesis-models/")
-    dir_base_stock_synthesis = paste0(dir_model,"base-model/")
+    from_dir = file.path(proj_dir,"stock-synthesis-models","base-model")
+    to_dir = file.path(proj_dir,"stock-synthesis-models","steepness-0.7")
+    dir.create(to_dir,recursive=TRUE)
 
 # read control file
-    tmp_ctl = SS_readctl(file=paste0(dir_base_stock_synthesis,"control.ss"),
-                         datlist = paste0(dir_base_stock_synthesis,"data.ss"))
+    tmp_ctl = SS_readctl(file=file.path(from_dir,"control.ss"),
+                         datlist = file.path(from_dir,"data.ss"))
+
 # modify
     tmp_ctl$SR_parms["SR_BH_steep","INIT"] = 0.7
 
 # write out file using r4ss functions
-    SS_writectl(tmp_ctl,outfile=paste0(dir_base_stock_synthesis,"control.ss"),overwrite=TRUE)
+    SS_writectl(tmp_ctl,outfile=file.path(to_dir,"control.ss"),overwrite=TRUE)
 ```
 :::
 :::
@@ -576,16 +774,20 @@ In this case we also copy the executable into our model directory.
 :::
 
 ::: {.fragment .fade-in fragment-index=1}
-::: {.codewindow .r .absolute top="15%" left="30%" right="0%" bottom="40%" style="font-size: 0.6em;"}
-ss3-example-calcs.r
+::: {.codewindow .r .absolute top="15%" left="30%" right="0%" style="font-size: 0.6em;"}
+01-01-modify-stock-synthesis.r
 ```{.r}
-# copy over executable
-    dir_exec = paste0(proj_dir,"/executables/stock-synthesis/3.30.23.1/")
-    ss3_exec = "ss3_linux"
-    file.copy(from=paste0(dir_exec,ss3_exec),to=dir_base_stock_synthesis)
-    
+# give permissions to executable
+    system(paste0("cd ",dir_exec,"; chmod 777 ", ss3_exec))
+
+# copy over executable & other stock synthesis input files
+    dir_exec = file.path(proj_dir,"executables","stock-synthesis","3.30.22.1")
+    ss3_exec = "ss3_linux"  
+    file.copy(from=file.path(dir_exec,ss3_exec),to=to_dir,overwrite=TRUE)
+    file.copy(from=file.path(from_dir,c("data.ss","forecast.ss","starter.ss")),to=to_dir,overwrite=TRUE)
+
 # run the model
-    run(dir=dir_base_stock_synthesis,exe=ss3_exec,show_in_console=TRUE,skipfinished=FALSE)
+    run(dir=to_dir,exe=ss3_exec,show_in_console=TRUE,skipfinished=FALSE)
 ```
 :::
 :::
@@ -599,7 +801,7 @@ What if we wanted to test models with several different alternatives for $h$?
 
 </br> 
 
-Say also testing $h = 0.5$ and $h = 0.6$? 
+Say also testing $h = 0.5$, $h = 0.6$ and $h = 0.8$? 
 :::
 :::
 
@@ -610,26 +812,26 @@ Put it in a `for` loop!
 :::
 
 ::: {.fragment .fade-in fragment-index=1}
-::: {.codewindow .r .absolute top="15%" left="30%" right="0%" bottom="5%" style="font-size: 0.5em;"}
-ss3-example-calcs.r
+::: {.codewindow .r .absolute top="15%" left="30%" right="0%" style="font-size: 0.5em;"}
+01-02-modify-stock-synthesis-for-loop.r
 ```{.r}
 # modify input file & run new stock synthesis models
-    steepness_vec = c(0.5,0.6,0.7)
+    steepness_vec = c(0.5,0.6,0.8)
     for(i in seq_along(steepness_vec)){
         # make new directory
-            tmp_dir = paste0(dir_model,"steepness-",steepness_vec[i],"/")
+            tmp_dir = file.path(proj_dir,"stock-synthesis-models",paste0("steepness-",steepness_vec[i]))
             dir.create(tmp_dir,recursive=TRUE)
         
         # modify control file
         # read in baseline stock synthesis files using r4ss functions
-            tmp_ctl = SS_readctl(file=paste0(dir_base_stock_synthesis,"control.ss_new"),datlist = paste0(dir_base_stock_synthesis,"data_echo.ss_new"))
+            tmp_ctl = SS_readctl(file=file.path(from_dir,"control.ss"),datlist = file.path(from_dir,"data.ss"))
             tmp_ctl$SR_parms["SR_BH_steep","INIT"] = steepness_vec[i]
         
         # write out file using r4ss functions
-            SS_writectl(tmp_ctl,outfile=paste0(tmp_dir,"control.ss"),overwrite=TRUE)
+            SS_writectl(tmp_ctl,outfile=file.path(tmp_dir,"control.ss"),overwrite=TRUE)
         # copy remaining input files and executable
-            file.copy(from=paste0(dir_base_stock_synthesis,c("starter.ss","data.ss","forecast.ss")),to=paste0(tmp_dir))
-            file.copy(from=paste0(dir_exec,ss3_exec),to=tmp_dir)
+            file.copy(from=file.path(from_dir,c("starter.ss","data.ss","forecast.ss")),to=file.path(tmp_dir,c("starter.ss","data.ss","forecast.ss")))
+            file.copy(from=file.path(dir_exec,ss3_exec),to=tmp_dir)
 
         # run the model
             run(dir=tmp_dir,exe=ss3_exec,show_in_console=TRUE,skipfinished=FALSE)
@@ -641,31 +843,24 @@ ss3-example-calcs.r
 :::
 :::
 
+##
+
+::: {.absolute top="25%" left="15%" style="font-size: 2em;"}
+Let's check out what the [models](https://connect.fisheries.noaa.gov/2025-01-ISC-OpenScienceTraining/){preview-link="true"}!
+:::
+
 ## Group activity! {.smaller}
 
-::: {.absolute left=0% top=15% right=40%}
 Using the toy Stock Synthesis model in the `stock-synthesis-models/base-model` directory make some modifications to the model, and run the different configurations.
-:::
 
-::: {.fragment .fade-in fragment-id=1}
-::: {.absolute left="65%" right="0%" top="35%" bottom="15%" style="font-color: #ffffff; font-size:1.175em; padding: 0.5em 1em; background-color: #0085CA; box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .5); border-radius: 15px;"}
-[Options]{.bg}
 </br>
-- Growth
-</br>
-- Selectivity
-</br>
-- Maturity
-</br>
-- Natural mortality
-</br>
-- Data-weighting 
-:::
-:::
 
+[OR]{.blue}
 
-::: {.fragment .fade-in fragment-id=2}
-::: {.absolute left=0% top=55% right=40%}
+</br>
+
+Modify the growth analysis code `01-00-fit-vb-growth-curve.r` to estimate sex-specific growth curves. 
+
+ </br>
+
 Each group should set-up their own `branch` on the [GitHub repo](https://github.com/MOshima-PIFSC/ISC_OSworkflow_training) to house the code, model files, and model results for the feature that they explore.
-:::
-:::

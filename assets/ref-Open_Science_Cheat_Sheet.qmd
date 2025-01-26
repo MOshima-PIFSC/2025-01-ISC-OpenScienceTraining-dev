@@ -4,6 +4,8 @@ engine: knitr
 format:
   html:
     embed-resources: true
+    toc-depth: 3
+    toc-expand: 3
 ---
 
 
@@ -63,6 +65,26 @@ flowchart LR
 **`git checkout branch_name`**: Switch to a different branch.  
 **`git switch`**: Switch to a different branch.  
 
+### Example workflow
+
+When working within a `git` enabled project it is generally good practice to not work directly on the `main` branch but to work in an alternative branch that can be pulled into the `main` branch.
+
+1. If needed clone the repository to your local machine using `git clone <url-to-repo.git>` where `<url-to-repo.git>` can be found on the repository website under the *green* code tab.
+
+2. Create a new branch using `git checkout -b <branch_name>` where `<branch_name>` is the branch you would like to work in.
+
+3. Set the upstream location so `git` knows where to push changes to using `git push --set-upstream origin <branch_name>`.
+
+4. Add/modify content within the repository and stage it for a commit using `git add`. You can stage all files at once using `git add .` or stage individual files using `git add <filename>`.
+
+5. Make the commit using `git commit` and add a label for the commit using the `-m` flag, `git commit -m 'Sample commit'`. Steps 4 & 5 can be combined to commit all new files using the `-am` flag, `git commit -am 'Sample commit'`.
+
+6. You can push the commit to the remote repository using `git push`.
+
+7. If you are getting ready to merge your changes into a different branch, it is useful to pull that branch into the branch you are working in using `git pull origin <other_branch>`. Now you can push your updated `branch_name` branch using `git pull`.
+
+8. You can now initiate a pull request from the Github reposository website to bring in the changes from `branch_name` into `other_branch`. This is also possible from the command line by switching to the `other_branch` using `git checkout other_branch` and then pulling in `branch_name` using `git pull origin branch_name`.
+
 
 ## VSCode  
 
@@ -106,14 +128,32 @@ Can have multiple terminals of different languages running at a time.
 
 #### Lockfile  
 
-**`renv::snapshot()`**: Update the lockfile with packages being used.   
-**`renv::restore()`**: Reinstall the packages specified in the lockfile.  
+**`renv::snapshot()`**: Update the lockfile (`renv.lock`) with packages being used.   
+**`renv::restore()`**: Reinstall the packages specified in the lockfile.
+
+### Example workflow
+
+If working within a project where `renv` is already used and enabled, an initial call to `renv::restore()` will install all packages named in the `renv.lock` file.
+
+If `renv` has not been enabled, an initial call to `renv::init()` will enable `renv`. `renv` will then crawl through all directories in your project searching for `.r` or `.R` files and identify packages that are explicitly referenced in *active* code using `library()`, `require()`, or `::`. These packages (as well as their versions and sources) will then be captured in the `renv.lock` file.
+
+As you add code to the repository it is good practice to periodically run `renv::status()` to see if there are any discrepancies between the packages that are used and those that are recorded in the `renv.lock` file. If there are discrepancies, you can use `renv::install()` to install the missing packages. Then `renv::snapshot()` can be used to update the `renv.lock` file to add/remove any packages.
+
+Packages can be updated to the newest version using the `renv::update()` though do so at your own risk as updates could result in code that no longer works.
+
+Calls to `renv::install()` or `renv::update()` without specifying an argument will install or update all needed packages. However, if you only want to install or update a particular package you can do so by specifying it as an argument (e.g., `renv::install("data.table")`). By default packages will be installed from [CRAN](https://cran.r-project.org/) however you can specify installation from a specific Github repository by specifying the repository owner and name (e.g., `renv::install("PIFSCstockassessments/ss3diags")`).
 
 ## Shiny  
 
 **`ui.R`**: the interactive user interface code (to show stuff)  
 **`server.R`**: the code for computations and plotting (to do stuff)  
 **`shiny::shinyApp()`**: launches the app
+
+#### Useful resources
+
+- [Shiny widgets](https://dreamrs.github.io/shinyWidgets/): a gallery of user interface widgets to include in an app
+- [AI assistant for Shiny](https://gallery.shinyapps.io/assistant/)
+- [Shiny live!](https://shinylive.io/r/examples/): An interactive development environment for Shiny apps
 
 ## Quarto  
 
@@ -161,6 +201,23 @@ And control the output rendered in the document with execution options.
 | `warning` | show/hide warnings in output           |
 | `error`   | show/hide error in output and continue with render |
 
+#### Include diagrams
+
+You can elso embed [Mermaid](https://mermaid.js.org/) diagrams directly into a Quarto document using code chunks. The following code...
+
+```{.mermaid}
+flowchart LR 
+    A(Remote repository) --> B(Pull changes from remote: git pull)
+    B --> C(Local computer)
+```
+
+... produces the following diagram.
+
+```{mermaid}
+flowchart LR 
+    A(Remote repository) --> B(Pull changes from remote: git pull)
+    B --> C(Local computer)
+```
 
 #### To render document    
 To render a quarto file to the proper format, in your terminal (not R), run: 
@@ -168,4 +225,11 @@ To render a quarto file to the proper format, in your terminal (not R), run:
 ```{.bash}
 quarto render path/to/file/name.qmd
 ```
+#### Useful resources
 
+- `revealjs` slidecraft: check out these [examples by Emil Hvitfeldt](https://emilhvitfeldt.com/project/slidecraft-101/)
+- [Quarto guide](https://quarto.org/docs/guide/)
+- [Get started with Quarto](https://rstudio-conf-2022.github.io/get-started-quarto/)
+- [Mermaid live!](https://mermaid.live/): An interactive development environment for Mermaid diagrams
+- [Creating a website](https://quarto.org/docs/websites/)
+- [Publishing Quarto Sites](https://quarto.org/docs/publishing/github-pages.html#:~:text=There%20are%20three%20ways%20to,publish%20from%20the%20docs%20directory.)

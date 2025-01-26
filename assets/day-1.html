@@ -76,35 +76,6 @@ ul.task-list li input[type="checkbox"] {
   </style>
   
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -259,7 +230,6 @@ window.Quarto = {
    
   <ul>
   <li><a href="#presentation-files" id="toc-presentation-files" class="nav-link active" data-scroll-target="#presentation-files">Presentation files</a></li>
-  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/MOshima-PIFSC/2025-01-ISC-OpenScienceTraining-dev/blob/main/assets/day-1.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/MOshima-PIFSC/2025-01-ISC-OpenScienceTraining-dev/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -305,19 +275,6 @@ window.Quarto = {
       <iframe class="slide-deck" src="day-1-pres-reproducible_environments.html" height="500px"></iframe>
     </div>
   
-</section>
-<section id="resources" class="level2">
-<h2 class="anchored" data-anchor-id="resources">Resources</h2>
-<p>Example code for modifying a <a href="https://nmfs-ost.github.io/ss3-website/">Stock Synthesis</a> input model file and running the modified model through <a href="https://www.r-project.org/">R</a> using the <a href="https://r4ss.github.io/r4ss/index.html">r4ss</a> package can be found in the <code>r-code/</code> directory on the course <a href="https://github.com/MOshima-PIFSC/ISC_OSworkflow_training/tree/main/r-code">GitHub repo</a>.</p>
-<p>Briefly the <code>r-code/01-modify-stock-synthesis.r</code> file takes you through the steps of:</p>
-<div>
-<ul>
-<li>reading in the <a href="https://nmfs-ost.github.io/ss3-website/">Stock Synthesis</a> input file (e.g., <code>control.ss</code>) using the <a href="https://r4ss.github.io/r4ss/index.html">r4ss</a> package</li>
-<li>modifying this file, in this case changing the <a href="https://www.iss-foundation.org/glossary/steepness/">steepness</a> value <span class="math inline">\(h\)</span> and thus modifying the shape of the <a href="https://edis.ifas.ufl.edu/publication/FA234">stock-recruitment relationship</a> (SRR)</li>
-<li>running the newly modified model</li>
-</ul>
-</div>
-<p>There is also code at the end of the file that wraps all three of those steps in a <code>for</code> loop in case multiple alternate model configurations want to be explored.</p>
 
 
 </section>
