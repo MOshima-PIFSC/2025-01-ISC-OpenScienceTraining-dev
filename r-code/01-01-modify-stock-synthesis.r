@@ -25,11 +25,15 @@
 # write out file using r4ss functions
     SS_writectl(tmp_ctl,outfile=file.path(to_dir,"control.ss"),overwrite=TRUE)
 
+
+# give permissions to executable
+    system(paste0("cd ",dir_exec,"; chmod 777 ", ss3_exec))
+
 # copy over executable & other stock synthesis input files
-    dir_exec = file.path(proj_dir,"executables","stock-synthesis","3.30.23.1")
-    ss3_exec = "ss3_linux"
-    file.copy(from=file.path(dir_exec,ss3_exec),to=to_dir)
-    file.copy(from=file.path(from_dir,c("data.ss","forecast.ss","starter.ss")),to=to_dir)
-    
+    dir_exec = file.path(proj_dir,"executables","stock-synthesis","3.30.22.1")
+    ss3_exec = "ss3_linux"  
+    file.copy(from=file.path(dir_exec,ss3_exec),to=to_dir,overwrite=TRUE)
+    file.copy(from=file.path(from_dir,c("data.ss","forecast.ss","starter.ss")),to=to_dir,overwrite=TRUE)
+
 # run the model
     run(dir=to_dir,exe=ss3_exec,show_in_console=TRUE,skipfinished=FALSE)
